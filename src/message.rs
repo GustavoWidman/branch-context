@@ -24,10 +24,10 @@ impl<M: Hash> Hash for Message<M> {
 }
 
 impl<M> Message<M> {
-    pub fn new(message: M) -> Result<Self> {
-        Ok(Self {
+    pub fn new(message: M) -> Self {
+        Self {
             message,
             timestamp: Utc::now(),
-        })
+        }
     }
 }
