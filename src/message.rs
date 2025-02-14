@@ -7,6 +7,7 @@ use chrono::{DateTime, Utc};
 pub struct Message<M> {
     pub message: M,               // actual message
     pub timestamp: DateTime<Utc>, // time the message was sent
+    pub id: u64,                  // unique id for the message
 }
 
 impl<M: PartialEq> PartialEq for Message<M> {
@@ -24,10 +25,11 @@ impl<M: Hash> Hash for Message<M> {
 }
 
 impl<M> Message<M> {
-    pub fn new(message: M) -> Result<Self> {
+    pub fn new(message: M, id: Option<impl Into<u64>>) -> Result<Self> {
         Ok(Self {
             message,
             timestamp: Utc::now(),
+            id: id.map_or(rand::random(), |id| id.into()),
         })
     }
 }
