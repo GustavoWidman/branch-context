@@ -6,7 +6,7 @@ pub use message::Message;
 pub struct Messages<M> {
     list: Vec<Message<M>>,
     selected: usize,
-    id: u64,
+    pub id: u64,
 
     /// Can we go forward?
     pub forward: bool,
