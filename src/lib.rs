@@ -1,7 +1,7 @@
 mod message;
 
 use indexmap::IndexMap;
-use message::Message;
+pub use message::Message;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Messages<M> {
