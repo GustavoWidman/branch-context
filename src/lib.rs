@@ -1,8 +1,13 @@
 mod message;
 
+// Add this at the top of the file
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
 pub use message::Message;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Messages<M> {
     list: Vec<Message<M>>,
     selected: usize,

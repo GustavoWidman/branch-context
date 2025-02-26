@@ -1,8 +1,11 @@
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 use std::hash::Hash;
 
 use chrono::{DateTime, Utc};
 
 #[derive(Debug, Clone)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Message<M> {
     pub message: M,               // actual message
     pub timestamp: DateTime<Utc>, // time the message was sent
