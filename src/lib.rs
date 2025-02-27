@@ -11,7 +11,6 @@ pub use message::Message;
 pub struct Messages<M> {
     list: Vec<Message<M>>,
     selected: usize,
-    pub id: u64,
 
     /// Can we go forward?
     pub forward: bool,
@@ -21,10 +20,9 @@ pub struct Messages<M> {
 }
 
 impl<M> Messages<M> {
-    pub fn new(message: Message<M>, id: Option<impl Into<u64>>) -> Self {
+    pub fn new(message: Message<M>) -> Self {
         Self {
             list: vec![message],
-            id: id.map_or(rand::random(), |id| id.into()),
             backward: false,
             forward: false,
             selected: 0,
